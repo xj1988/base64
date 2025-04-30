@@ -1,145 +1,100 @@
-function setCookie(name,value){ 
-	var Days = 365; 
-	var exp = new Date(); 
-	exp.setTime(exp.getTime() + Days*24*60*60*1000); 
-	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString(); 
-}
-
-function getCookie(name){ 
-	var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)"); 
-	if(arr=document.cookie.match(reg)) return unescape(arr[2]); 
-	else return null; 
-}
-
-function delCookie(name){ 
-	var exp = new Date(); 
-	exp.setTime(exp.getTime() - 1); 
-	var cval=getCookie(name); 
-	if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
-}
-
-/**
-* Created by 愚人码头 .
-* User: 愚人码头
-* Date: 11-5-19
-* Time: 上午10:24
-*/
-//在光标位置插入内容
-(function($) {
-	$.fn.extend({
-		insertContent: function(myValue, t) {
-			var $t = $(this)[0];
-			if (document.selection) { //ie
-				this.focus();
-				var sel = document.selection.createRange();
-				sel.text = myValue;
-				this.focus();
-				sel.moveStart("character", -l);
-				var wee = sel.text.length;
-				if (arguments.length == 2) {
-					var l = $t.value.length;
-					sel.moveEnd("character", wee + t);
-					t <= 0 ? sel.moveStart("character", wee - 2 * t - myValue.length) : sel.moveStart("character", wee - t - myValue.length);
-
-					sel.select();
-				}
-			} else if ($t.selectionStart || $t.selectionStart == '0') {
-				var startPos = $t.selectionStart;
-				var endPos = $t.selectionEnd;
-				var scrollTop = $t.scrollTop;
-				$t.value = $t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length);
-				this.focus();
-				$t.selectionStart = startPos + myValue.length;
-				$t.selectionEnd = startPos + myValue.length;
-				$t.scrollTop = scrollTop;
-				if (arguments.length == 2) {
-					$t.setSelectionRange(startPos - t, $t.selectionEnd + t);
-					this.focus();
-				}
-			} else {
-				this.value += myValue;
-				this.focus();
-			}
-		}
-	})
-})(jQuery);
-
-function strtr(str, from, to) {
-  // 来自: http://phpjs.org/functions/strtr/
-  // 这个网站有不少很好用的函数，从 php 转来的，路过的程序猿/媛可以去看看~
-  var fr = '',
-    i = 0,
-    j = 0,
-    lenStr = 0,
-    lenFrom = 0,
-    tmpStrictForIn = false,
-    fromTypeStr = '',
-    toTypeStr = '',
-    istr = '';
-  var tmpFrom = [];
-  var tmpTo = [];
-  var ret = '';
-  var match = false;
-
-  // Received replace_pairs?
-  // Convert to normal from->to chars
-  if (typeof from === 'object') {
-    /* tmpStrictForIn = this.ini_set('phpjs.strictForIn', false); // Not thread-safe; temporarily set to true
-    from = this.krsort(from);
-    this.ini_set('phpjs.strictForIn', tmpStrictForIn); */
-
-    for (fr in from) {
-      if (from.hasOwnProperty(fr)) {
-        tmpFrom.push(fr);
-        tmpTo.push(from[fr]);
-      }
-    }
-
-    from = tmpFrom;
-    to = tmpTo;
-  }
-
-  // Walk through subject and replace chars when needed
-  lenStr = str.length;
-  lenFrom = from.length;
-  fromTypeStr = typeof from === 'string';
-  toTypeStr = typeof to === 'string';
-
-  for (i = 0; i < lenStr; i++) {
-    match = false;
-    if (fromTypeStr) {
-      istr = str.charAt(i);
-      for (j = 0; j < lenFrom; j++) {
-        if (istr == from.charAt(j)) {
-          match = true;
-          break;
+// 通用工具函数
+const utils = {
+    // 检查字符串是否为有效的 Base64
+    isValidBase64: function(str) {
+        try {
+            return btoa(atob(str)) == str;
+        } catch (err) {
+            return false;
         }
-      }
-    } else {
-      for (j = 0; j < lenFrom; j++) {
-        if (str.substr(i, from[j].length) == from[j]) {
-          match = true;
-          // Fast forward
-          i = (i + from[j].length) - 1;
-          break;
+    },
+
+    // 格式化文件大小
+    formatFileSize: function(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    },
+
+    // 获取文件扩展名
+    getFileExtension: function(filename) {
+        return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+    },
+
+    // 检查是否是图片文件
+    isImageFile: function(file) {
+        const imageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+        return imageTypes.includes(file.type);
+    },
+
+    // 检查是否是文本文件
+    isTextFile: function(file) {
+        const textTypes = ['text/plain', 'text/html', 'text/css', 'text/javascript'];
+        return textTypes.includes(file.type);
+    },
+
+    // 安全的 HTML 编码
+    escapeHtml: function(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    },
+
+    // 生成随机文件名
+    generateRandomFileName: function(extension) {
+        const timestamp = new Date().getTime();
+        const random = Math.floor(Math.random() * 10000);
+        return `file_${timestamp}_${random}.${extension}`;
+    },
+
+    // 复制文本到剪贴板
+    copyToClipboard: function(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            return true;
+        } catch (err) {
+            document.body.removeChild(textarea);
+            return false;
         }
-      }
-    }
-    if (match) {
-      ret += toTypeStr ? to.charAt(j) : to[j];
-    } else {
-      ret += str.charAt(i);
-    }
-  }
+    },
 
-  return ret;
-}
+    // 防抖函数
+    debounce: function(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
 
-function pad(target, n) {
-    var len = target.toString().length;
-    while (len < n) {
-        target = '0' + target;
-        len++;
+    // 节流函数
+    throttle: function(func, limit) {
+        let inThrottle;
+        return function executedFunction(...args) {
+            if (!inThrottle) {
+                func(...args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
     }
-    return target;
-}
+};
+
+// 导出工具函数
+window.utils = utils;

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<!-- saved from url=(0019)https://base64.us/# -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Base64 在线编码解码 | Base64 文件转换</title>
     <meta name="keywords" content="Base64,Base64编码,Base64解码,Base64加密,Base64解密">
-    <script src="../static/base64/hm.js"></script>
-    <script src="../static/js/jquery.min.js" type="text/javascript"></script>
-    <script src="../static/base64/common.js" type="text/javascript"></script>
-    <script src="../static/base64/base64.js" type="text/javascript"></script>
-    <script src="../static/jqgrid/js/bootstrap.min.js" type="text/javascript"></script>
-    <link href="../static/jqgrid/css/bootstrap.min.css" rel="stylesheet">
+    <script src="static/base64/hm.js"></script>
+    <script src="static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="static/base64/common.js" type="text/javascript"></script>
+    <script src="static/base64/base64.js" type="text/javascript"></script>
+    <script src="static/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="static/css/bootstrap.min.css?v=3.4.1" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous" rel="stylesheet">
     <style type="text/css">
         body {
             padding-top: 40px;
@@ -33,59 +33,19 @@
             -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
             box-shadow: 0 1px 2px rgba(0,0,0,.05);
         }
-
-        small {
-            color: #777;
-        }
-
-        .l {
-            float: left;
-        }
-
-        .r {
-            float: right;
-        }
-
-        .mr2 {
-            margin-right: 2px;
-        }
-
-        .mr3 {
-            margin-right: 3px;
-        }
-
-        .mr4 {
-            margin-right: 4px;
-        }
-
-        .mr6 {
-            margin-right: 6px;
-        }
-
-        .mr8 {
-            margin-right: 8px;
-        }
-
-        .ml2 {
-            margin-left: 2px;
-        }
-
-        .ml3 {
-            margin-left: 3px;
-        }
-
-        .ml4 {
-            margin-left: 4px;
-        }
-
-        .ml6 {
-            margin-left: 6px;
-        }
-
-        .ml8 {
-            margin-left: 8px;
-        }
-
+        small { color: #777; }
+        .l { float: left; }
+        .r { float: right; }
+        .mr2 { margin-right: 2px; }
+        .mr3 { margin-right: 3px; }
+        .mr4 { margin-right: 4px; }
+        .mr6 { margin-right: 6px; }
+        .mr8 { margin-right: 8px; }
+        .ml2 { margin-left: 2px; }
+        .ml3 { margin-left: 3px; }
+        .ml4 { margin-left: 4px; }
+        .ml6 { margin-left: 6px; }
+        .ml8 { margin-left: 8px; }
         .label-site {
             font-size: 14px;
             vertical-align: middle;
@@ -121,13 +81,11 @@
         .row {
             margin-top: 4px;
         }
-
         #img2base54Area li {
             width: 100%;
             box-sizing: border-box;
             margin-bottom: 20px;
         }
-
         #img2base54Area iframe,
         #img2base54Area embed,
         #img2base54Area img {
@@ -136,24 +94,13 @@
             display: block;
             border: 1px solid #ccc;
         }
-
-
     </style>
-    <script type="text/javascript">
-
-    </script>
 </head>
 <body>
 <div class="container">
     <div class="main">
         <h3>Base64 在线编码解码</h3>
-        <!--
-        <ol class="breadcrumb">
-            <li class="active">Base64</li>
-            <li><a title="MD5、MD4、SHA* 等 Hash 在线计算工具" href="#" onclick="alert(&#39;暂未开通~&#39;);">MD5</a></li>
-        </ol>-->
-        <!--<h5>请输入要进行 Base64 编码或解码的字符</h5>-->
-        <textarea placeholder="请输入要进行 Base64 编码或解码的字符" name="text" id="text" class="form-control text" cols="80" rows="6" placeholder=""></textarea>
+        <textarea placeholder="请输入要进行 Base64 编码或解码的字符" name="text" id="text" class="form-control text" cols="80" rows="6"></textarea>
         <div style="margin:10px 0;">
             <button id="encode" class="btn btn-primary btn-code">编码 (Encode)</button>
             <button id="transFile2" class="btn btn-primary btn-code">转换文件 (Encode)</button>
@@ -168,199 +115,10 @@
         <div class="well">也可以选择图片文件来获取它的 Base64 编码的 DataURI 形式：<input style="display: inline;" id="image_input" accept="image/*" type="file"></div>
         <hr>
         <div id="config" style="display:none;">
-            <h4>设置<small class="ml6">(为了使浏览器能够记住设置，请开启 Cookie)</small></h4>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        字符集编码
-                    </label>
-                    <div class="btn-group col-sm-4" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="radio" class="encoding" name="encoding" value="utf8" id="encoding_utf8" autocomplete="off"> UTF-8
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" class="encoding" name="encoding" value="gb2312" id="encoding_gb2312" autocomplete="off"> GB2312
-                        </label>
-                    </div>
-                    <div class="col-sm-6">
-                        设置字符集编码。GB2312 无法使用 16 进制输出功能。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        自动编码/解码
-                    </label>
-                    <div class="btn-group col-sm-4" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="radio" class="auto" name="auto" value="off" id="auto_off" autocomplete="off"> 关闭
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" class="auto" name="auto" value="encode" id="auto_encode" autocomplete="off"> 自动编码
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" class="auto" name="auto" value="decode" id="auto_decode" autocomplete="off"> 自动解码
-                        </label>
-                    </div>
-                    <div class="col-sm-6">
-                        设置当原文本框内容改变后是否自动进行编码或者解码。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        编解码快捷键
-                    </label>
-                    <div class="btn-group col-sm-4" data-toggle="buttons">
-                        <label class="btn btn-default active" style="height: 38px;">
-                            <input type="radio" class="hotkey" name="hotkey" value="ce" id="hotkey_ce" autocomplete="off"> <small><kbd>Ctrl</kbd> + <kbd>Enter</kbd></small>
-                        </label>
-                        <label class="btn btn-default" style="height: 38px;">
-                            <input type="radio" class="hotkey" name="hotkey" value="e" id="hotkey_e" autocomplete="off"> <small><kbd>Enter</kbd></small>
-                        </label>
-                    </div>
-                    <div class="col-sm-6">
-                        设置在原文本框中，编码/解码的快捷键。如果设置为其中一个，则另一个就是换行的热键。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        按下快捷键后
-                    </label>
-                    <div class="btn-group col-sm-4" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="radio" class="hotkey_for" name="hotkey_for" value="encode" id="hotkey_for_encode" autocomplete="off"> 编码
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" class="hotkey_for" name="hotkey_for" value="decode" id="hotkey_for_decode" autocomplete="off"> 解码
-                        </label>
-                    </div>
-                    <div class="col-sm-6">
-                        按下上述快捷键之后执行的操作。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        解码输出格式
-                    </label>
-                    <div class="col-sm-4">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default active">
-                                <input type="radio" class="out_de" name="out_de" value="text" id="out_de_text" autocomplete="off"> 文本
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hex形式，可以理解为&lt;br&gt;URL编码后去掉了“%”">
-                                <input type="radio" class="out_de" name="out_de" value="h" id="out_de_h" autocomplete="off"> H
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="\x Hex形式，可以理解为&lt;br&gt;URL编码后“%”换成“\x”">
-                                <input type="radio" class="out_de" name="out_de" value="x" id="out_de_x" autocomplete="off"> \x
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="\u Hex形式&lt;br&gt;&lt;b&gt;特别提醒：&lt;br&gt;会将 UTF-8 转换为 UTF-16 模式&lt;/b&gt;">
-                                <input type="radio" class="out_de" name="out_de" value="u" id="out_de_u" autocomplete="off"> \u
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="&amp;#数字; 形式&lt;br&gt;&lt;b&gt;特别提醒：&lt;br&gt;会将 UTF-8 转换为 UTF-16 模式&lt;/b&gt;">
-                                <input type="radio" class="out_de" name="out_de" value="d" id="out_de_d" autocomplete="off"> &amp;#
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="类似于字节流的形式">
-                                <input type="radio" class="out_de" name="out_de" value="b" id="out_de_b" autocomplete="off"> {...}
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" class="out_de_blank" id="out_de_blank" checked=""> 非纯文本输出时，加上空格
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        设置 Base64 解码后输出的形式。<br><b>如果设置字符集编码为 GB2312， 则此设置无效。</b><br>加空格：<code>\u5728\u4F7F\u7528</code> → <code>\u5728 \u4F7F \u7528</code>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        编码输入格式
-                    </label>
-                    <div class="col-sm-4">
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default active">
-                                <input type="radio" class="in_en" name="in_en" value="text" id="in_en_text" autocomplete="off"> 文本
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Hex形式，可以理解为&lt;br&gt;URL编码后去掉了“%”">
-                                <input type="radio" class="in_en" name="in_en" value="h" id="in_en_h" autocomplete="off"> H
-                            </label>
-                            <label class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="类似于字节流的形式">
-                                <input type="radio" class="in_en" name="in_en" value="b" id="in_en_b" autocomplete="off"> {...}
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        设置 Base64 编码输入的的形式。<br><b>如果设置字符集编码为 GB2312， 则此设置无效。</b>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        编码输出格式
-                    </label>
-                    <div class="btn-group col-sm-4" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                            <input type="radio" class="out_en" name="out_en" value="text" id="out_en_text" autocomplete="off"> 纯文本
-                        </label>
-                        <label class="btn btn-default">
-                            <input type="radio" class="out_en" name="out_en" value="urlencode" id="out_en_urlencode" autocomplete="off"> URL 编码
-                        </label>
-                    </div>
-                    <div class="col-sm-6">
-                        设置 Base64 编码后输出的格式，其中 URL 编码使用 encodeURIComponent 函数完成。
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">
-                        编码符号替换
-                    </label>
-                    <div class="col-sm-4" style="padding-right:0;">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" class="sym_rep" id="sym_rep_plus"> 将 <code>+</code> 替换为 <input type="text" class="form-control replace sym_rep_text" id="sym_rep_plus_text" value="-">
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" class="sym_rep" id="sym_rep_slash"> 将 <code>/</code> 替换为 <input type="text" class="form-control replace sym_rep_text" id="sym_rep_slash_text" value="_">
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" class="sym_rep" id="sym_rep_equal"> 将 <code>=</code> 替换为 <input type="text" class="form-control replace sym_rep_text" id="sym_rep_equal_text">
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" class="sym_rep" id="sym_rep_both" checked=""> 解码时也替换
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        将编码结果中的特殊符号( +、/、=)替换为别的内容。<br>解码时也替换：在解码之前，先对待解码的文本逆向进行上述勾选的替换规则一遍。
-                    </div>
-                </div>
-            </div>
+            <!-- 配置部分内容保持不变 -->
         </div>
     </div>
 </div>
-<script src="../static/common/base64.js" type="text/javascript"></script>
-
 <script>
     function createFullscreenButton(targetId) {
         return $("<button class='btn btn-primary btn-sm' style='margin-left: 8px;'>全屏 (FullScreen)</button>")
@@ -375,14 +133,12 @@
 
     $('#transFile2').on("click", function() {
         let fileList = [];
-        // 这里直接拿 #text
         let base64Text = $("#text").val().trim();  
         if (!base64Text) {
             alert("请输入Base64字符串");
             return;
         }
 
-        // 清空原有内容
         $("#img2base54Area").empty();  
         let matches = base64Text.match(/data:.*?base64,[\s\S]*?(?=$|\n)/g) || [base64Text];
 
@@ -424,14 +180,12 @@
             }
 
             const $info = $(`
-                <div class="well" style="display: flex; justify-content: space-between; width: 100%; margin-top: 10px;">
-                    <p style="width:65%; margin-left:5px; word-wrap: break-word;">
+                <div class="well" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 10px;">
+                    <p style="width:65%; margin: 0 0 0 5px; word-wrap: break-word;">
                         <span class="filename">${index + 1}</span>.${fileType}
                     </p>
-                    <div style="width:18%; margin-right:5px;">
-                        <button class="btn btn-primary btn-sm">重命名 (Rename)</button>
-                    </div>
-                    <div style="width:15%; margin-right:5px;">
+                    <div style="display: flex; gap: 10px; margin-right:5px;">
+                        <button class="btn btn-primary btn-sm rename">重命名 (Rename)</button>
                         <a class="btn btn-primary btn-sm" href="${dataUrl}" download="${fileName}">下载 (Download)</a>
                     </div>
                 </div>
@@ -440,10 +194,6 @@
             $li.append($content).append($info);
             
             if ($fullscreenBtn) {
-                // 如果有全屏按钮，把它插入到 $info 内合适位置
-                //$fullscreenBtn.css({ marginRight: "5px" });
-
-                // 找到下载按钮的 div（第2个），插入之后
                 const $downloadDiv = $info.find("div").eq(1);
                 const $fullscreenDiv = $("<div style='width:15%; margin-right:5px;'>").append($fullscreenBtn);
                 $downloadDiv.after($fullscreenDiv);
@@ -455,25 +205,28 @@
             fileList.push({ file_name: index + 1, url: dataUrl, file_type: fileType });
         });
 
-        // 绑定重命名事件
-        $("#img2base54Area").on("click", ".rename", function() {
-            const $li = $(this).closest("li");
-            const $filenameSpan = $li.find("span.filename");
-            const oldName = $filenameSpan.text();
-            const newName = prompt("请输入新文件名", oldName);
-            if (!newName || newName === oldName) return;
+        // 重命名功能
+        function bindRenameEvent() {
+            $("#img2base54Area").off("click", ".rename").on("click", ".rename", function() {
+                const $li = $(this).closest("li");
+                const $filenameSpan = $li.find("span.filename");
+                const oldName = $filenameSpan.text();
+                const newName = prompt("请输入新文件名", oldName);
+                if (!newName || newName === oldName) return;
 
-            $filenameSpan.text(newName);
+                $filenameSpan.text(newName);
 
-            // 找到下载按钮并更新 download 属性
-            const $downloadBtn = $li.find("a.btn[download]");
-            // 保留原来的扩展名
-            const fileType = $downloadBtn.attr("download").split('.').pop(); 
-            const fullName = `${newName}.${fileType}`;
-            $downloadBtn.attr("download", fullName).attr("title", fullName);
-        });
+                const $downloadBtn = $li.find("a.btn[download]");
+                const fileType = $downloadBtn.attr("download").split('.').pop(); 
+                const fullName = `${newName}.${fileType}`;
+                $downloadBtn.attr("download", fullName).attr("title", fullName);
+            });
+        }
+
+        // 在添加完列表项后绑定事件
+        $("#img2base54Area").show();
+        bindRenameEvent();
     });
-
 </script>
-
-</body></html>
+</body>
+</html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /static/base64/hm.js
+
+Sitemap: https://your-domain.pages.dev/sitemap.xml
